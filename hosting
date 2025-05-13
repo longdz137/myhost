@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostVN - Dịch vụ Hosting Việt Nam chất lượng cao</title>
+    <style>
+        :root {
+            --primary: #2c7be5;
+            --secondary: #1e2e50;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1a68d1;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .plans {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .plan-card.popular::before {
+            content: "Phổ biến";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .plan-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #777;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .plan-features li i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .features {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Modal Cart */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .cart-items {
+            margin: 1rem 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+        
+        .cart-item-remove {
+            color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin: 1rem 0;
+        }
+        
+        .checkout-form {
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary);
+            background: rgba(44, 123, 229, 0.1);
+        }
+        
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Host<span>VN</span></a>
+                <ul class="nav-links">
+                    <li><a href="#plans">Gói Hosting</a></li>
+                    <li><a href="#features">Tính năng</a></li>
+                    <li><a href="#about">Về chúng tôi</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                    <li>
+                        <div class="cart-icon" id="cartIcon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </div>
+                    </li>
+                    <li><a href="#" class="btn">Khu vực khách hàng</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Dịch vụ Hosting Việt Nam chất lượng cao</h1>
+            <p>Tốc độ cực nhanh với uptime 99.9%, SSL miễn phí, hỗ trợ 24/7. Phù hợp cho mọi nhu cầu từ cá nhân đến doanh nghiệp.</p>
+            <a href="#plans" class="btn">Xem các gói</a>
+        </div>
+    </section>
+
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Chọn Gói Hosting Phù Hợp</h2>
+                <p>Tất cả gói dịch vụ đều được bảo đảm hoàn tiền trong 30 ngày</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Cá Nhân</h3>
+                    <div class="price">99.000đ<span>/tháng</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1 Website</li>
+                        <li><i class="fas fa-check"></i> 10GB SSD Storage</li>
+                        <li><i class="fas fa-check"></i> Băng thông không giới hạn</li>
+                        <li><i class="fas fa-check"></i> SSL miễn phí</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                    </ul>
+                    <button class="btn add-to-cart" data-id="1" data-name="Gói Cá Nhân" data-price="99000">Thêm vào giỏ</button>
+                </div>
+                <div class="plan-card popular">
+                    <h3>Doanh Nghiệp</h3>
+                    <div class="price">199.000đ<span>/tháng</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Không giới hạn website</li>
+                        <li><i class="fas fa-check"></i> 50GB SSD Storage</li>
+                        <li><i class="fas fa-check"></i> Băng thông không giới hạn</li>
+                        <li><i class="fas fa-check"></i> SSL miễn phí</li>
+                        <li><i class="fas fa-check"></i> Miễn phí domain (1 năm)</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ ưu tiên 24/7</li>
+                    </ul>
+                    <button class="btn add-to-cart" data-id="2" data-name="Gói Doanh Nghiệp" data-price="199000">Thêm vào giỏ</button>
+                </div>
+                <div class="plan-card">
+                    <h3>Cao Cấp</h3>
+                    <div class="price">299.000đ<span>/tháng</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Không giới hạn website</li>
+                        <li><i class="fas fa-check"></i> 100GB SSD Storage</li>
+                        <li><i class="fas fa-check"></i> Băng thông không giới hạn</li>
+                        <li><i class="fas fa-check"></i> SSL miễn phí</li>
+                        <li><i class="fas fa-check"></i> Miễn phí domain (1 năm)</li>
+                        <li><i class="fas fa-check"></i> Sao lưu hàng ngày</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ ưu tiên 24/7</li>
+                    </ul>
+                    <button class="btn add-to-cart" data-id="3" data-name="Gói Cao Cấp" data-price="299000">Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tại Sao Chọn HostVN?</h2>
+                <p>Chúng tôi cung cấp dịch vụ hosting hàng đầu với công nghệ tiên tiến</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Tốc độ cực nhanh</h3>
+                    <p>Máy chủ SSD và công nghệ tối ưu giúp website tải nhanh trong vài mili giây.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Bảo mật tối đa</h3>
+                    <p>SSL miễn phí, bảo vệ DDoS và quét malware giữ cho website luôn an toàn.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Hỗ trợ 24/7</h3>
+                    <p>Đội ngũ chuyên gia luôn sẵn sàng hỗ trợ bạn bất cứ lúc nào.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Uptime 99.9%</h3>
+                    <p>Hạ tầng dự phòng đảm bảo website của bạn luôn hoạt động.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>CDN miễn phí</h3>
+                    <p>Tất cả gói đều bao gồm Cloudflare CDN để phân phối nội dung toàn cầu.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Sao lưu hàng ngày</h3>
+                    <p>Tự động sao lưu hàng ngày đảm bảo dữ liệu luôn được bảo vệ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Giỏ hàng -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Giỏ Hàng Của Bạn</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
+                <p class="empty-cart">Giỏ hàng của bạn đang trống</p>
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Tổng cộng: 0đ
+            </div>
+            
+            <form class="checkout-form" id="checkoutForm">
+                <h3>Thông Tin Thanh Toán</h3>
+                <div class="form-group">
+                    <label for="name">Họ và tên*</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại*</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <input type="text" id="address">
+                </div>
+                <div class="form-group">
+                    <label for="note">Ghi chú</label>
+                    <textarea id="note" rows="3"></textarea>
+                </div>
+                
+                <h3>Phương Thức Thanh Toán</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="atm">
+                        <i class="fas fa-university"></i>
+                        <p>Chuyển khoản ATM</p>
+                    </div>
+                    <div class="payment-method" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <p>Thẻ Visa/Master</p>
+                    </div>
+                    <div class="payment-method" data-method="momo">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>Ví MoMo</p>
+                    </div>
+                    <div class="payment-method" data-method="zalopay">
+                        <i class="fas fa-wallet"></i>
+                        <p>ZaloPay</p>
+                    </div>
+                    <div class="payment-method" data-method="scratch">
+                        <i class="fas fa-scroll"></i>
+                        <p>Thẻ cào</p>
+                    </div>
+                </div>
+                <input type="hidden" id="paymentMethod" name="paymentMethod" value="">
+                
+                <button type="submit" class="btn" style="margin-top: 1rem;">Thanh Toán</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>HostVN</h3>
+                    <p>Cung cấp giải pháp hosting ổn định từ 2015. Hiện chúng tôi đang vận hành hơn 50,000 website trên toàn quốc.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <ul>
+                        <li><a href="#">Hosting chia sẻ</a></li>
+                        <li><a href="#">VPS</a></li>
+                        <li><a href="#">Máy chủ riêng</a></li>
+                        <li><a href="#">Đăng ký tên miền</a></li>
+                        <li><a href="#">Chứng chỉ SSL</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Công ty</h3>
+                    <ul>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường Hosting, TP.HCM</li>
+                        <li><i class="fas fa-phone"></i> 0901 234 567</li>
+                        <li><i class="fas fa-envelope"></i> support@hostvn.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 HostVN. Bảo lưu mọi quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Giỏ hàng
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeModal = document.getElementById('closeModal');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutForm = document.getElementById('checkoutForm');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const paymentMethodInput = document.getElementById('paymentMethod');
+        
+        // Mở modal giỏ hàng
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+            updateCartDisplay();
+        });
+        
+        // Đóng modal
+        closeModal.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        // Đóng modal khi click bên ngoài
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+        
+        // Thêm sản phẩm vào giỏ
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-id');
+                const name = e.target.getAttribute('data-name');
+                const price = parseInt(e.target.getAttribute('data-price'));
+                
+                // Kiểm tra xem sản phẩm đã có trong giỏ chưa
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCartCount();
+                showAddToCartAlert(name);
+            });
+        });
+        
+        // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        // Cập nhật hiển thị giỏ hàng trong modal
+        function updateCartDisplay() {
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Giỏ hàng của bạn đang trống</p>';
+                cartTotal.textContent = 'Tổng cộng: 0đ';
+                return;
+            }
+            
+            let itemsHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>${item.price.toLocaleString()}đ x ${item.quantity}</p>
+                        </div>
+                        <div class="cart-item-price">${itemTotal.toLocaleString()}đ</div>
+                        <div class="cart-item-remove" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = itemsHTML;
+            cartTotal.textContent = `Tổng cộng: ${total.toLocaleString()}đ`;
+            
+            // Thêm sự kiện xóa sản phẩm
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = e.target.closest('.cart-item-remove').getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+        }
+        
+        // Xóa sản phẩm khỏi giỏ
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        // Hiển thị thông báo khi thêm vào giỏ
+        function showAddToCartAlert(productName) {
+            alert(`Đã thêm "${productName}" vào giỏ hàng!`);
+        }
+        
+        // Chọn phương thức thanh toán
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                paymentMethodInput.value = method.getAttribute('data-method');
+            });
+        });
+        
+        // Xử lý thanh toán
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            
+            if (!paymentMethodInput.value) {
+                alert('Vui lòng chọn phương thức thanh toán!');
+                return;
+            }
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const note = document.getElementById('note').value;
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Tạo thông tin đơn hàng
+            const orderInfo = {
+                customer: { name, email, phone, address },
+                items: cart,
+                paymentMethod: paymentMethodInput.value,
+                note,
+                total,
+                date: new Date().toISOString()
+            };
+            
+            // Gửi đơn hàng qua Telegram bot
+            sendOrderToTelegram(orderInfo);
+            
+            // Hiển thị thông báo
+            alert('Đơn hàng của bạn đã được gửi thành công! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+            
+            // Reset giỏ hàng và form
+            cart = [];
+            updateCartCount();
+            updateCartDisplay();
+            checkoutForm.reset();
+            cartModal.style.display = 'none';
+        });
+        
+        // Gửi đơn hàng qua Telegram bot
+        function sendOrderToTelegram(orderInfo) {
+            // Tạo nội dung tin nhắn
+            let message = `🛒 *ĐƠN HÀNG MỚI* 🛒\n\n`;
+            message += `*Khách hàng:* ${orderInfo.customer.name}\n`;
+            message += `*Email:* ${orderInfo.customer.email}\n`;
+            message += `*Điện thoại:* ${orderInfo.customer.phone}\n`;
+            message += `*Địa chỉ:* ${orderInfo.customer.address || 'Không có'}\n\n`;
+            message += `*Sản phẩm:*\n`;
+            
+            orderInfo.items.forEach(item => {
+                message += `- ${item.name} (${item.price.toLocaleString()}đ x ${item.quantity}) = ${(item.price * item.quantity).toLocaleString()}đ\n`;
+            });
+            
+            message += `\n*Tổng cộng:* ${orderInfo.total.toLocaleString()}đ\n`;
+            message += `*Phương thức thanh toán:* ${getPaymentMethodName(orderInfo.paymentMethod)}\n`;
+            message += `*Ghi chú:* ${orderInfo.note || 'Không có'}\n\n`;
+            message += `*Thời gian:* ${new Date(orderInfo.date).toLocaleString('vi-VN')}`;
+            
+            // Thay thế bằng token bot và chat ID thực tế của bạn
+            const botToken = '7191581339:AAGIEkMwHToFmFgtGfmy0Pk4SwQqwByx2Hg';
+            const chatId = '-4671675470';
+            
+            // Gửi request đến API Telegram
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Telegram response:', data))
+            .catch(error => console.error('Error sending to Telegram:', error));
+        }
+        
+        // Lấy tên phương thức thanh toán
+        function getPaymentMethodName(method) {
+            switch(method) {
+                case 'atm': return 'Chuyển khoản ATM';
+                case 'card': return 'Thẻ Visa/Master';
+                case 'momo': return 'Ví MoMo';
+                case 'zalopay': return 'ZaloPay';
+                case 'scratch': return 'Thẻ cào';
+                default: return 'Khác';
+            }
+        }
+    </script>
+</body>
+</html>
